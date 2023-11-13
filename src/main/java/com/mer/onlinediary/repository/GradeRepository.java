@@ -2,6 +2,7 @@ package com.mer.onlinediary.repository;
 
 import com.mer.onlinediary.dto.StudentWithAvgGradeDTO;
 import com.mer.onlinediary.entity.Grade;
+import com.mer.onlinediary.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +26,4 @@ public interface GradeRepository extends JpaRepository<Grade, Integer> {
     void updateGradeForSubjectByStudentId(@Param("newGrade") int newGrade,
                                           @Param("studentId") int studentId,
                                           @Param("subjectName") String subjectName);
-
 }

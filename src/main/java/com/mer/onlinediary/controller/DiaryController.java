@@ -1,15 +1,13 @@
 package com.mer.onlinediary.controller;
 
 import com.mer.onlinediary.dto.GradeModificationDTO;
+import com.mer.onlinediary.dto.StudentCreationDTO;
 import com.mer.onlinediary.dto.StudentWithAvgGradeDTO;
 import com.mer.onlinediary.service.DiaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,10 +28,16 @@ public class DiaryController {
                                                                    @PathVariable String subjectName,
                                                                    @PathVariable int newGrade) {
         service.updateGradeForSubjectByStudentId(GradeModificationDTO.builder()
-                .newGrade(newGrade)
-                .studentId(studentId)
-                .subjectName(subjectName)
+                        .studentId(studentId)
+                        .newGrade(newGrade)
+                        .subjectName(subjectName)
                 .build());
         return ResponseEntity.ok("Оценка успешно обновлена");
+    }
+
+    @PostMapping("/groups/students")
+    public ResponseEntity<String> createStudent(@RequestBody StudentCreationDTO dto) {
+        service.createStudent(dto);
+        return ResponseEntity.ok("Студент успешно добавлен");
     }
 }
