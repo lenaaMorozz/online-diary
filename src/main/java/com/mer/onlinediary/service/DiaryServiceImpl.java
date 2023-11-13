@@ -3,7 +3,6 @@ package com.mer.onlinediary.service;
 import com.mer.onlinediary.dto.GradeModificationDTO;
 import com.mer.onlinediary.dto.StudentCreationDTO;
 import com.mer.onlinediary.dto.StudentWithAvgGradeDTO;
-import com.mer.onlinediary.entity.Group;
 import com.mer.onlinediary.entity.Student;
 import com.mer.onlinediary.repository.GradeRepository;
 import com.mer.onlinediary.repository.GroupRepository;

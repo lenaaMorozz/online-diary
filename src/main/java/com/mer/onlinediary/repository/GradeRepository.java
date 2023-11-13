@@ -2,7 +2,6 @@ package com.mer.onlinediary.repository;
 
 import com.mer.onlinediary.dto.StudentWithAvgGradeDTO;
 import com.mer.onlinediary.entity.Grade;
-import com.mer.onlinediary.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

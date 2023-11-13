@@ -4,14 +4,19 @@ import com.mer.onlinediary.dto.GradeModificationDTO;
 import com.mer.onlinediary.dto.StudentCreationDTO;
 import com.mer.onlinediary.dto.StudentWithAvgGradeDTO;
 import com.mer.onlinediary.service.DiaryService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 public class DiaryController {
@@ -19,7 +24,7 @@ public class DiaryController {
     private final DiaryService service;
 
     @GetMapping("/groups/{groupId}/grades/avg")
-    public ResponseEntity<List<StudentWithAvgGradeDTO>> getAvgGradesByGroup(@PathVariable int groupId) {
+    public ResponseEntity<List<StudentWithAvgGradeDTO>> getAvgGradesByGroup(@PathVariable @Min(1) @Max(12) int groupId) {
         List<StudentWithAvgGradeDTO> students = service.getAvgGradesByGroup(groupId);
         if (students.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -28,9 +33,9 @@ public class DiaryController {
     }
 
     @PutMapping("/groups/students/{studentId}/grades/{subjectName}/{newGrade}")
-    public ResponseEntity<String> updateGradeForSubjectByStudentId(@PathVariable int studentId,
+    public ResponseEntity<String> updateGradeForSubjectByStudentId(@PathVariable @Min(0) int studentId,
                                                                    @PathVariable String subjectName,
-                                                                   @PathVariable int newGrade) {
+                                                                   @PathVariable @Min(2) @Max(5) int newGrade) {
         int quantityModifRow = service.updateGradeForSubjectByStudentId(GradeModificationDTO.builder()
                         .studentId(studentId)
                         .newGrade(newGrade)
@@ -43,7 +48,7 @@ public class DiaryController {
     }
 
     @PostMapping("/groups/students")
-    public ResponseEntity<String> createStudent(@RequestBody StudentCreationDTO dto) {
+    public ResponseEntity<String> createStudent(@Valid @RequestBody StudentCreationDTO dto) {
         try {
             service.createStudent(dto);
         } catch (DataAccessException e) {
