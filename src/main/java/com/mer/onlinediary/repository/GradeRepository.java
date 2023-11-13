@@ -23,7 +23,7 @@ public interface GradeRepository extends JpaRepository<Grade, Integer> {
     @Modifying
     @Query("update Grade gr set gr.grade = :newGrade " +
            "where gr.student.id = :studentId and gr.subject.name = :subjectName")
-    void updateGradeForSubjectByStudentId(@Param("newGrade") int newGrade,
+    int updateGradeForSubjectByStudentId(@Param("newGrade") int newGrade,
                                           @Param("studentId") int studentId,
                                           @Param("subjectName") String subjectName);
 }

@@ -24,9 +24,9 @@ public class DiaryServiceImpl implements DiaryService {
         return gradeRepository.getAvgGradesByGroup(groupId);
     }
 
-    public void updateGradeForSubjectByStudentId(GradeModificationDTO dto) {
+    public int updateGradeForSubjectByStudentId(GradeModificationDTO dto) {
 
-        gradeRepository.updateGradeForSubjectByStudentId(dto.getNewGrade(),
+        return gradeRepository.updateGradeForSubjectByStudentId(dto.getNewGrade(),
                 dto.getStudentId(),
                 dto.getSubjectName());
     }

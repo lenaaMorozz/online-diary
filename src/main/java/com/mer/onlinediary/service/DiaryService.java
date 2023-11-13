@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DiaryService {
     List<StudentWithAvgGradeDTO> getAvgGradesByGroup(int groupId);
-    void updateGradeForSubjectByStudentId(GradeModificationDTO dto);
+    int updateGradeForSubjectByStudentId(GradeModificationDTO dto);
 
     void createStudent(StudentCreationDTO dto);
 }
