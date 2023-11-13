@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table
+@Table(schema = "student", name = "student")
 @Data
 @Builder
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -1,20 +1,20 @@
 package com.mer.onlinediary.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.security.auth.Subject;
-
 @Entity
-@Table
+@Table(schema = "student", name = "grade")
 @Data
 @Builder
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class Grade {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     @JoinColumn(name = "student_id")
